@@ -1,33 +1,33 @@
 {
-    "name": "Architectural CA Modern Home",
-    "address": "70780 Tamarisk Ln, Rancho Mirage, CA 92270",
-    "description": "Beautiful modern home in Rancho Mirage",
-    "image": "https://ipfs.io/ipfs/QmQUozrHLAusXDxrvsESJ3PYB3rUeUuBAvVWw6nop2uu7c/2.png",
-    "id": "2",
-    "attributes": [
-        {
-            "trait_type": "Purchase Price",
-            "value": 15
-        },
-        {
-            "trait_type": "Type of Residence",
-            "value": "Single family residence"
-        },
-        {
-            "trait_type": "Bed Rooms",
-            "value": 4
-        },
-        {
-            "trait_type": "Bathrooms",
-            "value": 4
-        },
-        {
-            "trait_type": "Square Feet",
-            "value": 3979
-        },
-        {
-            "trait_type": "Year Built",
-            "value": 1980
-        }
-    ]
+  "name": "House in selaiyur",
+  "address": "Selaiyur, Chennai",
+  "description": "1751 Sq.Ft, 3 BHK Individual House for sale in Selaiyur",
+  "image": "https://ipfs.io/ipfs/QmWtVBziJmuNArNTR4aws8JSC2q3R2QxgqVeBAJGRqg5rD?filename=1751-Sqft-3-BHK-House-for-sale-in-Selaiyur-14505-1.jpg",
+  "id": "2",
+  "attributes": [
+    {
+      "trait_type": "Purchase Price",
+      "value": 15
+    },
+    {
+      "trait_type": "Type of Residence",
+      "value": "Single family residence"
+    },
+    {
+      "trait_type": "Bed Rooms",
+      "value": 3
+    },
+    {
+      "trait_type": "Bathrooms",
+      "value": 3
+    },
+    {
+      "trait_type": "Square Feet",
+      "value": 1751
+    },
+    {
+      "trait_type": "Year Built",
+      "value": 2022
+    }
+  ]
 }

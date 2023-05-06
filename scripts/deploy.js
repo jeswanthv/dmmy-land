@@ -7,6 +7,18 @@
 const { ethers } = require('hardhat');
 const hre = require('hardhat');
 
+const fetchData = async (e) => {
+  let result = await fetch(`http://localhost:8080/houses/`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS',
+    },
+  });
+  result = await result.json();
+  return result;
+};
 const tokens = (n) => {
   return ethers.utils.parseUnits(n.toString(), 'ether');
 };
@@ -14,6 +26,9 @@ const tokens = (n) => {
 async function main() {
   // Setup accounts
   const [buyer, seller, inspector, lender] = await ethers.getSigners();
+  let houses = [];
+  houses = await fetchData();
+  console.log(houses.length);
 
   // Deploy Real Estate
   const RealEstate = await ethers.getContractFactory('RealEstate');
@@ -21,16 +36,12 @@ async function main() {
   await realEstate.deployed();
 
   console.log(`Deployed Real Estate Contract at: ${realEstate.address}`);
-  console.log(`Minting 3 properties...\n`);
+  console.log(`Minting ${houses.length} properties...\n`);
   let transaction;
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < houses.length; i++) {
     transaction = await realEstate
       .connect(seller)
-      .mint(
-        `https://ipfs.io/ipfs/QmQVcpsjrA6cr1iJjZAodYwmPekYgbnXGo4DFubJiLc2EB/${
-          i + 1
-        }.json`
-      );
+      .mint(`http://localhost:8080/houses/${i + 1}`);
     await transaction.wait();
   }
 
@@ -45,9 +56,8 @@ async function main() {
   await escrow.deployed();
 
   console.log(`Deployed Escrow Contract at: ${escrow.address}`);
-  console.log(`Listing 3 properties...\n`);
-
-  for (let i = 0; i < 3; i++) {
+  console.log(`Listing ${houses.length} properties...\n`);
+  for (let i = 0; i < houses.length; i++) {
     // Approve properties...
     let transaction = await realEstate
       .connect(seller)
@@ -73,7 +83,6 @@ async function main() {
 
   console.log(`Finished.`);
 }
-
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {

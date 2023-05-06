@@ -24,7 +24,7 @@ const Navigation = ({ account, setAccount }) => {
                 <a href='#'>Buy</a>
               </li>
               <li>
-                <a href='#'>Sell</a>
+                <a href='/sell'>Sell</a>
               </li>
             </>
           )}

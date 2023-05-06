@@ -13,17 +13,19 @@ import Escrow from './abis/Escrow.json';
 
 // Config
 import config from './config.json';
+import { Button } from '@chakra-ui/react';
 
 function App() {
   const [provider, setProvider] = useState(null);
   const [escrow, setEscrow] = useState(null);
 
   const [account, setAccount] = useState(null);
-
+  const [seller, setSeller] = useState(null);
   const [homes, setHomes] = useState([]);
   const [previousHomes, setPreviousHomes] = useState([]);
   const [home, setHome] = useState({});
   const [toggle, setToggle] = useState(false);
+  const [realEstate, setrealEstate] = useState(null);
 
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -35,6 +37,7 @@ function App() {
       RealEstate,
       provider
     );
+    setrealEstate(realEstate);
     console.log(realEstate);
     realEstate
       .totalSupply()
@@ -82,6 +85,23 @@ function App() {
 
     toggle ? setToggle(false) : setToggle(true);
   };
+  const mintNft = async () => {
+    const seller = await escrow.seller();
+    setSeller(seller);
+    console.log(realEstate);
+    realEstate
+      .mint()
+      ?.then((value) => console.log(value))
+      .catch((e) => console.log(e));
+    // const transaction = await realEstate.mint()
+    //   .connect(seller)
+    //   .mint(
+    //     'https://land-bloc-1.infura-ipfs.io/ipfs/QmS2tYbmMKt9mUr8h4T7zqKSFpbBVdgShdDtKCchVvXTJE'
+    //   );
+    // await transaction.wait();
+    console.log(seller);
+    console.log('minted');
+  };
 
   return (
     <div>
@@ -91,6 +111,7 @@ function App() {
 
       <div className='cards__section'>
         <h3>Assets</h3>
+        <Button onClick={mintNft}>Mint</Button>
 
         <div className='cards'>
           {homes.map((home, index) => (

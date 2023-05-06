@@ -140,13 +140,13 @@ const Home = ({ home, provider, account, escrow, togglePop }) => {
         <div className='home__overview'>
           <h1>{home.name}</h1>
           <p>
-            <strong>{home.attributes[2].value}</strong> bds |
+            {/* <strong>{home.attributes[2].value}</strong> bds |
             <strong>{home.attributes[3].value}</strong> ba |
-            <strong>{home.attributes[4].value}</strong> sqft
+            <strong>{home.attributes[4].value}</strong> sqft */}
           </p>
           <p>{home.address}</p>
 
-          <h2>{home.attributes[0].value} ETH</h2>
+          {/* <h2>{home.attributes[0].value} ETH</h2> */}
 
           {owner ? (
             <div className='home__owned'>
@@ -180,6 +180,10 @@ const Home = ({ home, provider, account, escrow, togglePop }) => {
                   className='home__buy'
                   onClick={sellHandler}
                   disabled={hasSold}
+                  style={{
+                    opacity: `${hasSold && '0.2'}`,
+                    cursor: `${hasSold && 'not-allowed'}`,
+                  }}
                 >
                   {buttonSell}
                 </button>
@@ -188,6 +192,10 @@ const Home = ({ home, provider, account, escrow, togglePop }) => {
                   className='home__buy'
                   onClick={buyHandler}
                   disabled={hasBought}
+                  style={{
+                    opacity: `${hasBought && '0.2'}`,
+                    cursor: `${hasBought && 'not-allowed'}`,
+                  }}
                 >
                   Buy
                 </button>
@@ -205,13 +213,13 @@ const Home = ({ home, provider, account, escrow, togglePop }) => {
 
           <h2>Facts and features</h2>
 
-          <ul>
+          {/* <ul>
             {home.attributes.map((attribute, index) => (
               <li key={index}>
                 <strong>{attribute.trait_type}</strong> : {attribute.value}
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
 
         <button onClick={togglePop} className='home__close'>
